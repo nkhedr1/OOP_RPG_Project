@@ -4,11 +4,13 @@ namespace OOP_RPG
 {
     public class Game
     {
-        public Hero Hero { get; }
+        public Hero Hero { get; set; }
+        public Shop Shop { get; set; }
 
         public Game()
         {
             Hero = new Hero();
+            Shop = new Shop(Hero);
         }
 
         public void Start()
@@ -27,13 +29,14 @@ namespace OOP_RPG
         {
             var input = "0";
 
-            while (input != "4")
+            while (input != "5")
             {
                 Console.WriteLine("Please choose an option by entering a number.");
                 Console.WriteLine("1. View Stats");
                 Console.WriteLine("2. View Inventory");
                 Console.WriteLine("3. Fight Monster");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("4. Buy Items");
+                Console.WriteLine("5. Exit");
 
                 input = Console.ReadLine();
 
@@ -48,6 +51,11 @@ namespace OOP_RPG
                 else if (input == "3")
                 {
                     this.Fight();
+                }
+                else if (input == "4")
+                {
+                    this.Buy();
+
                 }
 
                 if (Hero.CurrentHP <= 0)
@@ -76,8 +84,36 @@ namespace OOP_RPG
         private void Fight()
         {
             var fight = new Fight(Hero);
-
             fight.Start();
+        }
+
+        private void Buy()
+        {
+            Console.WriteLine("Chose type of items to buy!");
+            Console.WriteLine("1. Armor");
+            Console.WriteLine("2. Weapon");
+            Console.WriteLine("3. Return");
+            var input2 = Console.ReadLine();
+
+            if (input2 == "1")
+            {
+                Shop.SellArmor();
+                Console.WriteLine("Press any key to return to main menu.");
+                Console.ReadKey();
+                return;
+            }
+            else if (input2 == "2")
+            {
+                Shop.SellWeapons();
+                Console.WriteLine("Press any key to return to main menu.");
+                Console.ReadKey();
+                return;
+            }
+            else if (input2 == "3")
+            {
+                return;
+            }
+            Console.ReadKey();
         }
     }
 }
