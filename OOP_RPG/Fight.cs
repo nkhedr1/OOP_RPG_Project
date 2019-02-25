@@ -72,19 +72,30 @@ namespace OOP_RPG
         {
 
             var compare = Hero.TotalStrength - Enemy.Defense;
-            int maxDamage;
-            int minDamage;
             int damage;
+            int maxDamage = compare + (compare / 2);
+            int minDamage = compare / 2;
 
             if (compare <= 0)
             {
                 damage = 1;
                 Enemy.CurrentHP -= damage;
             }
+            else if (maxDamage <= 0)
+            {
+
+                damage = 1;
+                Enemy.CurrentHP -= damage;
+            }
+            else if (minDamage <= 0)
+            {
+
+                damage = 1;
+                Enemy.CurrentHP -= damage;
+            }
             else
             {
-                maxDamage = compare + (compare / 2);
-                minDamage = compare / 2;
+                
                 damage = randNum.Next(minDamage, maxDamage);
                 Enemy.CurrentHP -= damage;
             }

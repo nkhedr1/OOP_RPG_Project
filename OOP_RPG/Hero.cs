@@ -37,7 +37,7 @@ namespace OOP_RPG
             TotalDefense = 10;
             OriginalHP = 30;
             CurrentHP = 30;
-            Gold = 20;
+            Gold = 0;
         }
 
         //These are the Methods of our Class.
@@ -148,6 +148,10 @@ namespace OOP_RPG
             else if (input == "4")
             {
                 this.EquippedWeapon = null;
+            }
+            else if (input == "5")
+            {
+                return;
             }
         }
 

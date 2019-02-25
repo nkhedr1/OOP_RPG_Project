@@ -31,7 +31,7 @@ namespace OOP_RPG
                 new Monster("Spider", 7, 3, 15, MonsterDificulty.Easy),
                 new Monster("Dragon", 20, 8, 30, MonsterDificulty.Hard),
                 new Monster("Bear", 19, 7, 25, MonsterDificulty.Hard),
-                new Monster("Lion", 13, 4, 21, MonsterDificulty.Medium)
+                new Monster("Lion", 13, 4, 21, MonsterDificulty.Medium)             
             };
 
             Monsters2 = new List<Monster>
