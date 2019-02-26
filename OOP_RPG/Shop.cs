@@ -11,6 +11,7 @@ namespace OOP_RPG
 
         public List<Armor> ArmorShop { get; set; }
         public List<Weapon> WeaponShop { get; set; }
+        public List<HealthPotion> PotionShop { get; set; }
         public Hero Hero { get; set; }
         int num { get; set; }
 
@@ -18,6 +19,7 @@ namespace OOP_RPG
         {
             ArmorShop = new List<Armor>();
             WeaponShop = new List<Weapon>();
+            PotionShop =  new List<HealthPotion>();
             Hero = hero;
 
         }
@@ -127,6 +129,62 @@ namespace OOP_RPG
                 if (Hero.Gold >= WeaponShop[2].Price)
                 {
                     Hero.WeaponsBag.Add(WeaponShop[2]);
+                }
+                else
+                {
+                    Console.WriteLine("Not Enough Gold!");
+                }
+            }
+        }
+
+        public void SellHealthPotions()
+        {
+            num = 1;
+            PotionShop = new List<HealthPotion>
+            {
+                new HealthPotion("Health Potion", 7, 5),
+                new HealthPotion("Strong Health Potion", 11, 10),
+                new HealthPotion("Great Health Potion", 16, 15)
+            };
+
+            foreach (HealthPotion potion in PotionShop)
+            {
+
+                Console.WriteLine(num + ". Name: " + potion.Name + ", Health: " + potion.HealthRestored + ", Price: " + potion.Price + ".");
+                num++;
+            }
+
+            Console.WriteLine("Please choose the potion you want to buy by entering a number!");
+
+            var input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                if (Hero.Gold >= PotionShop[0].Price)
+                {
+                    Hero.PotionBag.Add(PotionShop[0]);
+                }
+                else
+                {
+                    Console.WriteLine("Not Enough Gold!");
+                }
+            }
+            else if (input == "2")
+            {
+                if (Hero.Gold >= PotionShop[1].Price)
+                {
+                    Hero.PotionBag.Add(PotionShop[1]);
+                }
+                else
+                {
+                    Console.WriteLine("Not Enough Gold!");
+                }
+            }
+            else if (input == "3")
+            {
+                if (Hero.Gold >= PotionShop[2].Price)
+                {
+                    Hero.PotionBag.Add(PotionShop[2]);
                 }
                 else
                 {

@@ -16,7 +16,6 @@ namespace OOP_RPG
         public List<Monster> Monsters6 { get; set; }
         public List<Monster> Monsters7 { get; set; }
 
-
         public MonsterSelector()
         {
             AddMonster();
@@ -24,14 +23,13 @@ namespace OOP_RPG
 
         public void AddMonster()
         {
-
             Monsters = new List<Monster>
             {
                 new Monster("Squid", 15, 5, 20, MonsterDificulty.Medium),
                 new Monster("Spider", 7, 3, 15, MonsterDificulty.Easy),
                 new Monster("Dragon", 20, 8, 30, MonsterDificulty.Hard),
                 new Monster("Bear", 19, 7, 25, MonsterDificulty.Hard),
-                new Monster("Lion", 13, 4, 21, MonsterDificulty.Medium)             
+                new Monster("Lion", 13, 4, 21, MonsterDificulty.Medium)
             };
 
             Monsters2 = new List<Monster>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OOP_RPG
 {
@@ -18,31 +19,31 @@ namespace OOP_RPG
 
             if (currentDay == DayOfWeek.Monday)
             {
-                Enemy = monsterSelector.Monsters[randNum.Next(0, 4)];
+                Enemy = monsterSelector.Monsters[randNum.Next(0, 5)];
             }
             else if (currentDay == DayOfWeek.Tuesday)
             {
-                Enemy = monsterSelector.Monsters2[randNum.Next(0, 4)];
+                Enemy = monsterSelector.Monsters2[randNum.Next(0, 5)];
             }
             else if (currentDay == DayOfWeek.Wednesday)
             {
-                Enemy = monsterSelector.Monsters3[randNum.Next(0, 4)];
+                Enemy = monsterSelector.Monsters3[randNum.Next(0, 5)];
             }
             else if (currentDay == DayOfWeek.Thursday)
             {
-                Enemy = monsterSelector.Monsters4[randNum.Next(0, 4)];
+                Enemy = monsterSelector.Monsters4[randNum.Next(0, 5)];
             }
             else if (currentDay == DayOfWeek.Friday)
             {
-                Enemy = monsterSelector.Monsters5[randNum.Next(0, 4)];
+                Enemy = monsterSelector.Monsters5[randNum.Next(0, 5)];
             }
             else if (currentDay == DayOfWeek.Saturday)
             {
-                Enemy = monsterSelector.Monsters6[randNum.Next(0, 4)];
+                Enemy = monsterSelector.Monsters6[randNum.Next(0, 5)];
             }
             else if (currentDay == DayOfWeek.Sunday)
             {
-                Enemy = monsterSelector.Monsters7[randNum.Next(0, 4)];
+                Enemy = monsterSelector.Monsters7[randNum.Next(0, 5)];
             }
 
 
@@ -57,6 +58,7 @@ namespace OOP_RPG
                 Enemy.CurrentHP + " HP. What will you do?");
 
                 Console.WriteLine("1. Fight");
+                Console.WriteLine("2. Heal");
 
                 var input = Console.ReadLine();
 
@@ -64,6 +66,19 @@ namespace OOP_RPG
                 {
                     HeroTurn();
 
+                }
+                else if (input == "2")
+                {
+                    Console.WriteLine("Please choose the potion to heal with by entering a number.");
+                    int i;
+                    for (i = 0; i < Hero.PotionBag.Count(); i++)
+                    {
+                        Console.WriteLine($"{i + 1} {Hero.PotionBag[i].Name} of {Hero.PotionBag[i].HealthRestored} Health");
+                    }
+                   
+                    input = Console.ReadLine();
+                    var inputNumber = Int32.Parse(input) - 1;
+                    Hero.UseHealthPotion(inputNumber);
                 }
             }
         }

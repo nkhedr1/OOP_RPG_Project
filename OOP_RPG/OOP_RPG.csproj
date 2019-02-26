@@ -46,6 +46,7 @@
     <Compile Include="Armor.cs" />
     <Compile Include="Fight.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="HealthPotion.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="MonsterDificulty.cs" />
