@@ -8,7 +8,7 @@ namespace OOP_RPG
     {
         private Hero Hero { get; }
         public Monster Enemy { get; set; }
-        Random randNum = new Random();
+        public Random randNum = new Random();
         private DayOfWeek currentDay = DateTime.Today.DayOfWeek;
 
         public Fight(Hero game)
@@ -45,13 +45,10 @@ namespace OOP_RPG
             {
                 Enemy = monsterSelector.Monsters7[randNum.Next(0, 5)];
             }
-
-
         }
 
         public void Start()
         {
-
             while (Enemy.CurrentHP > 0 && Hero.CurrentHP > 0)
             {
                 Console.WriteLine("You've encountered a " + Enemy.Name + "! " + Enemy.Strength + " Strength/" + Enemy.Defense + " Defense/" +
@@ -59,13 +56,13 @@ namespace OOP_RPG
 
                 Console.WriteLine("1. Fight");
                 Console.WriteLine("2. Heal");
+                Console.WriteLine("3. Run!!");
 
                 var input = Console.ReadLine();
 
                 if (input == "1")
                 {
                     HeroTurn();
-
                 }
                 else if (input == "2")
                 {
@@ -75,17 +72,60 @@ namespace OOP_RPG
                     {
                         Console.WriteLine($"{i + 1} {Hero.PotionBag[i].Name} of {Hero.PotionBag[i].HealthRestored} Health");
                     }
-                   
+
                     input = Console.ReadLine();
                     var inputNumber = Int32.Parse(input) - 1;
                     Hero.UseHealthPotion(inputNumber);
+                }
+                else if (input == "3")
+                {
+                    var chanceToRun = 0;
+                    if (Enemy.Dificulty == MonsterDificulty.Easy)
+                    {
+                        chanceToRun = randNum.Next(1, 3);
+                        if (chanceToRun == 1)
+                        {
+                            HeroTurn();
+                        }
+                        else
+                        {
+                            Console.WriteLine("You get to live another day!!");
+                            return;
+                        }
+                    }
+                    else if (Enemy.Dificulty == MonsterDificulty.Medium)
+                    {
+                        chanceToRun = randNum.Next(1, 5);
+                        if (chanceToRun == 1)
+                        {
+                            HeroTurn();
+                        }
+                        else
+                        {
+                            Console.WriteLine("You get to live another day!!");
+                            return;
+                        }
+                    }
+                    else if (Enemy.Dificulty == MonsterDificulty.Hard)
+                    {
+                        chanceToRun = randNum.Next(1, 21);
+                        if (chanceToRun == 1)
+                        {
+                            HeroTurn();
+                        }
+                        else
+                        {
+                            Console.WriteLine("You get to live another day!!");
+                            return;
+                        }
+                    }
+
                 }
             }
         }
 
         private void HeroTurn()
         {
-
             var compare = Hero.TotalStrength - Enemy.Defense;
             int damage;
             int maxDamage = compare + (compare / 2);
@@ -110,7 +150,7 @@ namespace OOP_RPG
             }
             else
             {
-                
+
                 damage = randNum.Next(minDamage, maxDamage);
                 Enemy.CurrentHP -= damage;
             }
@@ -129,12 +169,10 @@ namespace OOP_RPG
 
         private void MonsterTurn()
         {
-
             int damage;
             var compare = Enemy.Strength - Hero.TotalDefense;
             int maxDamage;
             int minDamage;
-
 
             if (compare <= 0)
             {
@@ -180,10 +218,6 @@ namespace OOP_RPG
                 Hero.Gold = Hero.Gold + HardMonsterGoldGenerator;
                 Console.WriteLine(Hero.Name + " receives " + HardMonsterGoldGenerator + " Gold!");
             }
-
-
-
-
         }
 
         private void Lose()

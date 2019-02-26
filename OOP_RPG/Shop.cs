@@ -50,6 +50,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= ArmorShop[0].Price)
                 {
                     Hero.ArmorsBag.Add(ArmorShop[0]);
+                    Hero.Gold -= ArmorShop[0].Price;
                 }
                 else
                 {
@@ -62,6 +63,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= ArmorShop[1].Price)
                 {
                     Hero.ArmorsBag.Add(ArmorShop[1]);
+                    Hero.Gold -= ArmorShop[1].Price;
                 }
                 else
                 {
@@ -73,6 +75,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= ArmorShop[2].Price)
                 {
                     Hero.ArmorsBag.Add(ArmorShop[2]);
+                    Hero.Gold -= ArmorShop[2].Price;
                 }
                 else
                 {
@@ -107,6 +110,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= WeaponShop[0].Price)
                 {
                     Hero.WeaponsBag.Add(WeaponShop[0]);
+                    Hero.Gold -= WeaponShop[0].Price;
                 }
                 else
                 {
@@ -118,6 +122,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= WeaponShop[1].Price)
                 {
                     Hero.WeaponsBag.Add(WeaponShop[1]);
+                    Hero.Gold -= WeaponShop[1].Price;
                 }
                 else
                 {
@@ -129,6 +134,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= WeaponShop[2].Price)
                 {
                     Hero.WeaponsBag.Add(WeaponShop[2]);
+                    Hero.Gold -= WeaponShop[2].Price;
                 }
                 else
                 {
@@ -163,6 +169,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= PotionShop[0].Price)
                 {
                     Hero.PotionBag.Add(PotionShop[0]);
+                    Hero.Gold -= PotionShop[0].Price;
                 }
                 else
                 {
@@ -174,6 +181,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= PotionShop[1].Price)
                 {
                     Hero.PotionBag.Add(PotionShop[1]);
+                    Hero.Gold -= PotionShop[1].Price;
                 }
                 else
                 {
@@ -185,6 +193,7 @@ namespace OOP_RPG
                 if (Hero.Gold >= PotionShop[2].Price)
                 {
                     Hero.PotionBag.Add(PotionShop[2]);
+                    Hero.Gold -= PotionShop[2].Price;
                 }
                 else
                 {
