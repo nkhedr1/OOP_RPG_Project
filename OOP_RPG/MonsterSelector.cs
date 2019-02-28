@@ -16,6 +16,7 @@ namespace OOP_RPG
         public List<Monster> Monsters6 { get; set; }
         public List<Monster> Monsters7 { get; set; }
 
+
         public MonsterSelector()
         {
             AddMonster();

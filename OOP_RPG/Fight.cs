@@ -8,42 +8,43 @@ namespace OOP_RPG
     {
         private Hero Hero { get; }
         public Monster Enemy { get; set; }
-        public Random randNum = new Random();
-        private DayOfWeek currentDay = DateTime.Today.DayOfWeek;
-
+        public MonsterSelector MonsterSelector { get; set; }
+        public Random RandNum = new Random();
+        private DayOfWeek CurrentDay = DateTime.Today.DayOfWeek;
         public Fight(Hero game)
         {
             Hero = game;
-            var monsterSelector = new MonsterSelector();
-            monsterSelector.AddMonster();
+            MonsterSelector = new MonsterSelector();
+            MonsterSelector.AddMonster();
 
-            if (currentDay == DayOfWeek.Monday)
+            if (CurrentDay == DayOfWeek.Monday)
             {
-                Enemy = monsterSelector.Monsters[randNum.Next(0, 5)];
+                Enemy = MonsterSelector.Monsters[RandNum.Next(0, 5)];
+
             }
-            else if (currentDay == DayOfWeek.Tuesday)
+            else if (CurrentDay == DayOfWeek.Tuesday)
             {
-                Enemy = monsterSelector.Monsters2[randNum.Next(0, 5)];
+                Enemy = MonsterSelector.Monsters2[RandNum.Next(0, 5)];
             }
-            else if (currentDay == DayOfWeek.Wednesday)
+            else if (CurrentDay == DayOfWeek.Wednesday)
             {
-                Enemy = monsterSelector.Monsters3[randNum.Next(0, 5)];
+                Enemy = MonsterSelector.Monsters3[RandNum.Next(0, 5)];
             }
-            else if (currentDay == DayOfWeek.Thursday)
+            else if (CurrentDay == DayOfWeek.Thursday)
             {
-                Enemy = monsterSelector.Monsters4[randNum.Next(0, 5)];
+                Enemy = MonsterSelector.Monsters4[RandNum.Next(0, 5)];
             }
-            else if (currentDay == DayOfWeek.Friday)
+            else if (CurrentDay == DayOfWeek.Friday)
             {
-                Enemy = monsterSelector.Monsters5[randNum.Next(0, 5)];
+                Enemy = MonsterSelector.Monsters5[RandNum.Next(0, 5)];
             }
-            else if (currentDay == DayOfWeek.Saturday)
+            else if (CurrentDay == DayOfWeek.Saturday)
             {
-                Enemy = monsterSelector.Monsters6[randNum.Next(0, 5)];
+                Enemy = MonsterSelector.Monsters6[RandNum.Next(0, 5)];
             }
-            else if (currentDay == DayOfWeek.Sunday)
+            else if (CurrentDay == DayOfWeek.Sunday)
             {
-                Enemy = monsterSelector.Monsters7[randNum.Next(0, 5)];
+                Enemy = MonsterSelector.Monsters7[RandNum.Next(0, 5)];
             }
         }
 
@@ -82,7 +83,7 @@ namespace OOP_RPG
                     var chanceToRun = 0;
                     if (Enemy.Dificulty == MonsterDificulty.Easy)
                     {
-                        chanceToRun = randNum.Next(1, 3);
+                        chanceToRun = RandNum.Next(1, 3);
                         if (chanceToRun == 1)
                         {
                             HeroTurn();
@@ -95,7 +96,7 @@ namespace OOP_RPG
                     }
                     else if (Enemy.Dificulty == MonsterDificulty.Medium)
                     {
-                        chanceToRun = randNum.Next(1, 5);
+                        chanceToRun = RandNum.Next(1, 5);
                         if (chanceToRun == 1)
                         {
                             HeroTurn();
@@ -108,7 +109,7 @@ namespace OOP_RPG
                     }
                     else if (Enemy.Dificulty == MonsterDificulty.Hard)
                     {
-                        chanceToRun = randNum.Next(1, 21);
+                        chanceToRun = RandNum.Next(1, 21);
                         if (chanceToRun == 1)
                         {
                             HeroTurn();
@@ -151,7 +152,7 @@ namespace OOP_RPG
             else
             {
 
-                damage = randNum.Next(minDamage, maxDamage);
+                damage = RandNum.Next(minDamage, maxDamage);
                 Enemy.CurrentHP -= damage;
             }
 
@@ -183,7 +184,7 @@ namespace OOP_RPG
             {
                 maxDamage = compare + (compare / 2);
                 minDamage = compare / 2;
-                damage = randNum.Next(minDamage, maxDamage);
+                damage = RandNum.Next(minDamage, maxDamage);
                 Hero.CurrentHP -= damage;
             }
 
@@ -197,9 +198,20 @@ namespace OOP_RPG
 
         private void Win()
         {
-            var EasyMonsterGoldGenerator = randNum.Next(1, 10);
-            var MedMonsterGoldGenerator = randNum.Next(11, 20);
-            var HardMonsterGoldGenerator = randNum.Next(21, 30);
+            var EasyMonsterGoldGenerator = RandNum.Next(1, 11);
+            var MedMonsterGoldGenerator = RandNum.Next(11, 21);
+            var HardMonsterGoldGenerator = RandNum.Next(21, 30);
+
+            Hero.KillingScore += 1;
+
+            if (Hero.KilledMonsters.Any() && !Hero.KilledMonsters.Contains(Enemy.Name))
+            {
+                Hero.KilledMonsters.Add(Enemy.Name);
+            }
+            else if (!Hero.KilledMonsters.Any())
+            {
+                Hero.KilledMonsters.Add(Enemy.Name);
+            }
 
             Console.WriteLine(Enemy.Name + " has been defeated! You win the battle!");
 
@@ -218,6 +230,8 @@ namespace OOP_RPG
                 Hero.Gold = Hero.Gold + HardMonsterGoldGenerator;
                 Console.WriteLine(Hero.Name + " receives " + HardMonsterGoldGenerator + " Gold!");
             }
+
+            Hero.Achivments();
         }
 
         private void Lose()

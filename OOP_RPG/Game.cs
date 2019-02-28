@@ -17,11 +17,8 @@ namespace OOP_RPG
         {
             Console.WriteLine("Welcome hero!");
             Console.WriteLine("Please enter your name:");
-
             Hero.Name = Console.ReadLine();
-
             Console.WriteLine("Hello " + Hero.Name);
-
             Main();
         }
 
@@ -68,7 +65,6 @@ namespace OOP_RPG
         private void Stats()
         {
             Hero.ShowStats();
-
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
         }
@@ -76,9 +72,6 @@ namespace OOP_RPG
         private void Inventory()
         {
             Hero.ShowInventory();
-
-            Console.WriteLine("Press any key to return to main menu.");
-            Console.ReadKey();
         }
 
         private void Fight()
@@ -93,35 +86,40 @@ namespace OOP_RPG
             Console.WriteLine("1. Armor");
             Console.WriteLine("2. Weapon");
             Console.WriteLine("3. Potion");
-            Console.WriteLine("4. Return");
+            Console.WriteLine("4. Shield");
+            Console.WriteLine("5. Return");
             var input2 = Console.ReadLine();
-
-            if (input2 == "1")
+            while (input2 != "5")
             {
-                Shop.SellArmor();
-                Console.WriteLine("Press any key to return to main menu.");
-                Console.ReadKey();
-                return;
+                if (input2 == "1")
+                {
+                    Shop.SellArmor();
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
+                    return;
+                }
+                else if (input2 == "2")
+                {
+                    Shop.SellWeapons();
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
+                    return;
+                }
+                else if (input2 == "3")
+                {
+                    Shop.SellHealthPotions();
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
+                    return;
+                }
+                else if (input2 == "4")
+                {
+                    Shop.SellShield();
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
+                    return;
+                }
             }
-            else if (input2 == "2")
-            {
-                Shop.SellWeapons();
-                Console.WriteLine("Press any key to return to main menu.");
-                Console.ReadKey();
-                return;
-            }
-            else if (input2 == "3")
-            {
-                Shop.SellHealthPotions();
-                Console.WriteLine("Press any key to return to main menu.");
-                Console.ReadKey();
-                return;
-            }
-            else if (input2 == "4")
-            {
-                return;
-            }
-            Console.ReadKey();
         }
     }
 }

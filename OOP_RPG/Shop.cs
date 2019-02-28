@@ -10,6 +10,7 @@ namespace OOP_RPG
     {
 
         public List<Armor> ArmorShop { get; set; }
+        public List<Armor> ShieldShop { get; set; }
         public List<Weapon> WeaponShop { get; set; }
         public List<HealthPotion> PotionShop { get; set; }
         public Hero Hero { get; set; }
@@ -18,10 +19,10 @@ namespace OOP_RPG
         public Shop(Hero hero)
         {
             ArmorShop = new List<Armor>();
+            ShieldShop = new List<Armor>();
             WeaponShop = new List<Weapon>();
-            PotionShop =  new List<HealthPotion>();
+            PotionShop = new List<HealthPotion>();
             Hero = hero;
-
         }
 
         public void SellArmor()
@@ -194,6 +195,66 @@ namespace OOP_RPG
                 {
                     Hero.PotionBag.Add(PotionShop[2]);
                     Hero.Gold -= PotionShop[2].Price;
+                }
+                else
+                {
+                    Console.WriteLine("Not Enough Gold!");
+                }
+            }
+        }
+
+        public void SellShield()
+        {
+            num = 1;
+            ShieldShop = new List<Armor>
+            {
+                new Armor("Wooden Buckler", 3, 10),
+                new Armor("Iron Shield", 5, 12),
+                new Armor("Kite Shield", 7, 16)
+            };
+
+            foreach (Armor shield in ShieldShop)
+            {
+
+                Console.WriteLine(num + ". Name: " + shield.Name + ", Defence: " + shield.Defense + ", Price: " + shield.Price + ".");
+                num++;
+            }
+
+            Console.WriteLine("Please choose the Shield you want to buy by entering a number!");
+
+            var input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                if (Hero.Gold >= ShieldShop[0].Price)
+                {
+                    Hero.ShieldBag.Add(ShieldShop[0]);
+                    Hero.Gold -= ShieldShop[0].Price;
+                }
+                else
+                {
+                    Console.WriteLine("Not Enough Gold!");
+                }
+
+            }
+            else if (input == "2")
+            {
+                if (Hero.Gold >= ShieldShop[1].Price)
+                {
+                    Hero.ShieldBag.Add(ShieldShop[1]);
+                    Hero.Gold -= ShieldShop[1].Price;
+                }
+                else
+                {
+                    Console.WriteLine("Not Enough Gold!");
+                }
+            }
+            else if (input == "3")
+            {
+                if (Hero.Gold >= ShieldShop[2].Price)
+                {
+                    Hero.ShieldBag.Add(ShieldShop[2]);
+                    Hero.Gold -= ShieldShop[2].Price;
                 }
                 else
                 {
